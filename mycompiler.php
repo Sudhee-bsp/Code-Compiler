@@ -22,59 +22,18 @@
 		
 		// Setup request to send json via POST
 		$data = array(
-			// 'code'=>
-			// 'import java.util.*;
-			// import java.util.regex.*;
-			
-			// public class Main2 
-			// {
-			// 	public static boolean check(Pattern pattern,Matcher m)
-			// 	{
-			// 		boolean val=false;
-			// 		if(m.find())
-			// 		{
-			// 			val=true;
-			// 		}
-			// 		else{
-			// 			val=false;
-			// 		}
-			// 		return val;
-			// 	}
-			// 	public static void main(String[] args) 
-			// 	{
-			// 		Scanner in=new Scanner(System.in);
-			// 		System.out.println("Enter fleet of soldiers");
-			// 		String sen=in.nextLine();
-					
-					
-			// 		System.out.println("Enter pattern");
-			// 		String pat=in.nextLine();
-			// 		Pattern pattern = Pattern.compile(pat);
-			// 		Matcher m = Pattern.compile(pat).matcher(sen);
-					
-			// 		while(check(pattern,m))
-			// 		{
-			// 			sen = sen.replaceFirst(pat,"");
-			// 			m=Pattern.compile(pat).matcher(sen);
-			// 		}
-			// 		if(sen.isEmpty())
-			// 		{
-			// 			System.out.println(10);
-			// 		}
-			// 		else{
-			// 			System.out.println(sen);
-			// 		}
-			// 	}
-			// }
-			// ',
 
-			// "clientId" => "1dd6b5d11c188278d50f365831663577",
-			// "clientSecret" => "c1bde6e978a34732b735980a019e3b931fe96f7573c428bf892ee325e57a0061",
-
+			// Enter your client_id and client_secret from jdoodle
 			"clientId" => $_ENV['CLIENT_ID'],
 			"clientSecret" => $_ENV['CLIENT_SECRET'],
+
+			// the code to execute - given by the user
 			'script' => $code,
+
+			// the input to feed to the code - given by the user
 			'stdin' => $stdin,
+
+			// language to execute the code in - chosen by the user
 			'language' => $language,
 			'versionIndex' => 0
 		);
@@ -99,12 +58,14 @@
 
 
 		$response = json_decode($result, true);
+
+		// Get the output from the response - after code execution
 		$output = $response['output'];
 		
-
+		// Get the memory usage by the code - after code execution
 		$memory = $response['memory'];
 		
-
+		// Get the cpu time from the response - after code execution
 		$cpuTime = $response['cpuTime'];
 	}
 ?>
