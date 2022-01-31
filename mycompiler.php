@@ -72,12 +72,15 @@
 
 <html>
 <head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="./style.css" />
 </head>
 <body>
 	<div class="container"> 
-		<div class=" text-center mt-3 ">
+		<div class="text-center mt-3">
         	<h1>&lt;My Code Compiler /&gt;</h1>
     	</div>
 		<div class="row ">
@@ -122,13 +125,19 @@
 											<br>
 											<label for="form_inputs">Inputs: (if any)</label> 
 											<br/>
-											<textarea id="form_inputs" name="stdin" rows="5" cols="60"></textarea>
+											<textarea class="form-control" id="form_inputs" name="stdin" rows="5" cols="60"></textarea>
 											<br><br>
 										</div>
 										<div class="col-md-12"> 
 											<input name="getoutput" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Run"> 
 										</div>
 									</div>
+
+									<!-- <div class="row">
+										<div class="col-md-12"> -->
+											<?php include('./editor.html'); ?>
+										<!-- </div>
+									</div> -->
 								</div>
 							</form>
 						</div>

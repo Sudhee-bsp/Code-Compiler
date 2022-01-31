@@ -1,5 +1,9 @@
 body {
   font-family: "Lato", sans-serif;
+  background: #2696ec;
+  background: -webkit-linear-gradient(top left, #2696ec, #0aa763);
+  background: -moz-linear-gradient(top left, #2696ec, #0aa763);
+  background: linear-gradient(to bottom right, #2696ec, #0aa763);
 }
 
 h1 {
