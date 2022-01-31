@@ -1,13 +1,13 @@
 #editor {
   margin: 0;
-  width: 100%;
+  /* width: 100%; */
   height: 32em;
-  margin-top: 5px;
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
-.labelopt {
-  color: #fff;
+.mained {
+  border: 5px solid #2696ec;
+  border-radius: 10px;
 }
 /*Compile Button CSS*/
 
@@ -57,7 +57,7 @@
 /*Compile Button CSS End*/
 
 .col-md-12.col-sm-12.codeSide {
-  background: #272822;
+  /* background: #272822; */
   /* height: 40em; */
   padding-left: 21px;
   border-radius: 10px;

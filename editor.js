@@ -51,6 +51,9 @@ function change2mode() {
   var ut = document.getElementById("mode2");
   var mode2Value = ut.options[ut.selectedIndex].value;
 
+  if (mode2Value == "monokai") {
+    editor.setTheme("ace/theme/monokai");
+  }
   if (mode2Value == "chrome") {
     editor.setTheme("ace/theme/chrome");
   }
