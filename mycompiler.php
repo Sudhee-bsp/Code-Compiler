@@ -120,7 +120,7 @@
 										<div class="col-md-12">
 											<div class="form-group"> 
 												<label for="form_message">Your Code </label> 
-												<textarea id="form_message" name="code" class="form-control" placeholder="Write your code here." rows="10" col="100" autocomplete="on" required="required"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
+												<textarea id="form_message" name="code" class="form-control" placeholder="Write your code here." rows="10" col="100" autocomplete="on"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
 											</div>
 											<br>
 											<label for="form_inputs">Inputs: (if any)</label> 
