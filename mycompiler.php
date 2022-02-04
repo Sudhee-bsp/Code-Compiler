@@ -10,9 +10,21 @@
 	$code = $stdin = $language = $memory = $cpuTime = $output = "";
 
 	if(isset($_POST['getoutput'])){
-		$code = $_POST['code'];
+		// $code = $_POST['code'];
 		$stdin = $_POST['stdin'];
 		$language = $_POST['lang'];
+		
+
+		// --- new editor----
+		// $language = $_POST['mode'];
+		$dom = new DOMDocument;
+		$dom->loadHTMLFile('editor.html', LIBXML_NOERROR);
+		// get value from pre tag
+		// $code = $dom->ace.edit('editor')[0]->nodeValue;
+
+		$random = $_GET["a"];
+		echo $random;
+
 
 		// API URL
 		$url = 'https://api.jdoodle.com/v1/execute';
@@ -88,7 +100,7 @@
 				<div class="card mt-2 mx-auto p-4 bg-light">
 					<div class="card-body bg-light">
 						<div class="container">
-							<form action="./mycompiler.php" method="POST" id="contact-form" role="form">
+							<form action="./mycompiler.php" method="GET" id="contact-form" role="form">
 								<div class="controls">
 								
 									<div class="row">
@@ -120,7 +132,7 @@
 										<div class="col-md-12">
 											<div class="form-group"> 
 												<label for="form_message">Your Code </label> 
-												<textarea id="form_message" name="code" class="form-control" placeholder="Write your code here." rows="10" col="100" autocomplete="on"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
+												<textarea id="form_message" name="code1" class="form-control" placeholder="Write your code here." rows="10" col="100" autocomplete="on"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
 											</div>
 											<br>
 											<label for="form_inputs">Inputs: (if any)</label> 
@@ -175,6 +187,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+var editor = ace.edit('editor');
+var code = editor.getValue();
+window.location.href = window.location.href+'?a='+code;
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
