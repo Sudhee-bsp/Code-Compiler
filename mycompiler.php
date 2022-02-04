@@ -10,21 +10,9 @@
 	$code = $stdin = $language = $memory = $cpuTime = $output = "";
 
 	if(isset($_POST['getoutput'])){
-		// $code = $_POST['code'];
+		$code = $_POST['code'];
 		$stdin = $_POST['stdin'];
 		$language = $_POST['lang'];
-		
-
-		// --- new editor----
-		// $language = $_POST['mode'];
-		$dom = new DOMDocument;
-		$dom->loadHTMLFile('editor.html', LIBXML_NOERROR);
-		// get value from pre tag
-		// $code = $dom->ace.edit('editor')[0]->nodeValue;
-
-		$random = $_GET["a"];
-		echo $random;
-
 
 		// API URL
 		$url = 'https://api.jdoodle.com/v1/execute';
@@ -87,6 +75,7 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BSP | CODE</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="./style.css" />
 </head>
@@ -100,30 +89,46 @@
 				<div class="card mt-2 mx-auto p-4 bg-light">
 					<div class="card-body bg-light">
 						<div class="container">
-							<form action="./mycompiler.php" method="GET" id="contact-form" role="form">
+							<form action="./mycompiler.php" method="POST" id="contact-form" role="form">
 								<div class="controls">
 								
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group"> 
+												
 												<label for="form_need">Choose language</label> 
-												<select id="lang" name="lang" class="form-control" required="required">
-													<option value="java"
-													<?php if(isset($_POST['lang']) && $_POST['lang'] == 'java') 
-														echo ' selected="selected"';
-													?>
-													>Java</option>
-													<option value="python3"
-													<?php if(isset($_POST['lang']) && $_POST['lang'] == 'python3') 
-														echo ' selected="selected"';
-													?>
-													>Python3</option>
-													<option value="c"
+												
+												<select id="lang" name="lang" class="form-control" data-live-search="true" required="required" onchange="changeMode()">
+													<option value="c" id="c"
 													<?php if(isset($_POST['lang']) && $_POST['lang'] == 'c') 
 														echo ' selected="selected"';
 													?>
-													>C</option>
+													>C
+													</option>
+
+													<option value="java" id="java"
+													<?php if(isset($_POST['lang']) && $_POST['lang'] == 'java') 
+														echo ' selected="selected"';
+													?>
+													>Java
+													</option>
+
+													<option value="python3" id="python3"
+													<?php if(isset($_POST['lang']) && $_POST['lang'] == 'python3') 
+														echo ' selected="selected"';
+													?>
+													>Python3
+													</option>
+
+													<option value="cpp" id="cpp"
+													<?php if(isset($_POST['lang']) && $_POST['lang'] == 'cpp') 
+														echo ' selected="selected"';
+													?>
+													>C++
+													</option>
+													
 												</select> 
+												
 											</div>
 										</div>
 									</div>
@@ -132,7 +137,20 @@
 										<div class="col-md-12">
 											<div class="form-group"> 
 												<label for="form_message">Your Code </label> 
-												<textarea id="form_message" name="code1" class="form-control" placeholder="Write your code here." rows="10" col="100" autocomplete="on"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
+												<textarea id="form_message" name="code" class="form-control" rows="10" col="100" autocomplete="on" hidden="hidden"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
+												<?php include('./editor.php'); ?>
+												<?php
+													if(isset($_POST['code'])) {
+														echo "sssssss";
+												?>
+													<script> 
+														var editor = ace.edit('editor');
+														editor.setValue('<?php echo $code; ?>');
+														alert('working');
+													</script>
+												<?php
+													}
+												?>
 											</div>
 											<br>
 											<label for="form_inputs">Inputs: (if any)</label> 
@@ -140,14 +158,15 @@
 											<textarea class="form-control" id="form_inputs" name="stdin" rows="5" cols="60"></textarea>
 											<br><br>
 										</div>
+										
 										<div class="col-md-12"> 
-											<input name="getoutput" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Run"> 
+											<input id="runcode" name="getoutput" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Run"> 
 										</div>
 									</div>
 
 									<!-- <div class="row">
 										<div class="col-md-12"> -->
-											<?php include('./editor.html'); ?>
+											 <!-- include('./editor.php');  -->
 										<!-- </div>
 									</div> -->
 								</div>
@@ -184,12 +203,21 @@
 	<br><br><br><br>
 	<!-- ------------------------------------------------------------------- -->
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+	
 var editor = ace.edit('editor');
-var code = editor.getValue();
-window.location.href = window.location.href+'?a='+code;
+var textarea = $('#form_message');
+
+editor.getSession().on('change', function () {
+	textarea.val(editor.getSession().getValue());
+});
+textarea.val(editor.getSession().getValue());
+
+
+
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }

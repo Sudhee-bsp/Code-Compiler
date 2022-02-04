@@ -11,7 +11,7 @@ editor.clearSelection();
 
 // Function to change the mode of the editor as a different language is selected dynamically
 function changeMode() {
-  var x = document.getElementById("mode");
+  var x = document.getElementById("lang");
   var modeValue = x.options[x.selectedIndex].value;
   if (modeValue == "c") {
     editor.session.setMode("ace/mode/c_cpp");
@@ -21,7 +21,7 @@ function changeMode() {
     editor.clearSelection();
     document.getElementById("langExt").innerHTML = "c";
   }
-  if (modeValue == "c++") {
+  if (modeValue == "cpp") {
     editor.session.setMode("ace/mode/c_cpp");
     editor.setValue(
       "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Complete the code.\n    return 0;\n}\n"
@@ -32,7 +32,7 @@ function changeMode() {
   if (modeValue == "python3") {
     editor.session.setMode("ace/mode/python");
     editor.setValue(
-      "# Enter your code here. Read input from STDIN. Print output to STDOUT"
+      "# Enter your code here. Read input from STDIN. Print output to STDOUT\n"
     );
     editor.clearSelection();
     document.getElementById("langExt").innerHTML = "py";
@@ -96,12 +96,12 @@ function saveTextAsFile() {
   //   var fileNameToSaveAs = "ecc.java";
 
   // save file as per language
-  var sf = document.getElementById("mode");
+  var sf = document.getElementById("lang");
   var modeValue = sf.options[sf.selectedIndex].value;
   if (modeValue == "c") {
     var fileNameToSaveAs = "code.c";
   }
-  if (modeValue == "c++") {
+  if (modeValue == "cpp") {
     var fileNameToSaveAs = "code.cpp";
   }
   if (modeValue == "python3") {
