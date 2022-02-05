@@ -75,6 +75,7 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="favicon.ico" />
 	<title>BSP | CODE</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="./style.css" />
@@ -89,7 +90,7 @@
 				<div class="card mt-2 mx-auto p-4 bg-light">
 					<div class="card-body bg-light">
 						<div class="container">
-							<form action="./mycompiler.php" method="POST" id="contact-form" role="form">
+							<form action="./index.php" method="POST" id="contact-form" role="form">
 								<div class="controls">
 								
 									<div class="row">
@@ -138,18 +139,10 @@
 											<div class="form-group"> 
 												<label for="form_message">Your Code </label> 
 												<textarea id="form_message" name="code" class="form-control" rows="10" col="100" autocomplete="on" hidden="hidden"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
-												<?php include('./editor.php'); ?>
-												<?php
-													if(isset($_POST['code'])) {
-														echo "sssssss";
-												?>
-													<script> 
-														var editor = ace.edit('editor');
-														editor.setValue('<?php echo $code; ?>');
-														alert('working');
-													</script>
-												<?php
-													}
+												<?php 
+													include('./editor.php'); 
+													// user session code after executing.
+													include('./sessioncode.php');
 												?>
 											</div>
 											<br>
@@ -164,11 +157,6 @@
 										</div>
 									</div>
 
-									<!-- <div class="row">
-										<div class="col-md-12"> -->
-											 <!-- include('./editor.php');  -->
-										<!-- </div>
-									</div> -->
 								</div>
 							</form>
 						</div>
@@ -215,7 +203,6 @@ editor.getSession().on('change', function () {
 	textarea.val(editor.getSession().getValue());
 });
 textarea.val(editor.getSession().getValue());
-
 
 
 if ( window.history.replaceState ) {

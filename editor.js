@@ -40,7 +40,7 @@ function changeMode() {
   if (modeValue == "java") {
     editor.session.setMode("ace/mode/java");
     editor.setValue(
-      "import java.io.*;\nimport java.util.*;\n\nclass Main {\n\n    public static void main(String[] args) {\n        // Your code goes here\n   }\n}\n"
+      "import java.io.*;\nimport java.util.*;\n\npublic class Main {\n\n    public static void main(String[] args) {\n        // Your code goes here\n   }\n}\n"
     );
     editor.clearSelection();
     document.getElementById("langExt").innerHTML = "java";
