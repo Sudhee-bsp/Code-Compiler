@@ -133,7 +133,7 @@ function saveTextAsFile() {
 var button = document.getElementById("save");
 button.addEventListener("click", saveTextAsFile);
 
-$(document).ready(function () {
-  $(".selectpicker").selectpicker();
-  $('[data-toggle="tooltip"]').tooltip();
-});
+// $(document).ready(function () {
+//   $(".selectpicker").selectpicker();
+//   $('[data-toggle="tooltip"]').tooltip();
+// });

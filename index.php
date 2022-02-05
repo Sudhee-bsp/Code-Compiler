@@ -8,11 +8,15 @@
 	$dotenv->load();
 
 	$code = $stdin = $language = $memory = $cpuTime = $output = "";
+	$theme = "";
 
 	if(isset($_POST['getoutput'])){
 		$code = $_POST['code'];
 		$stdin = $_POST['stdin'];
 		$language = $_POST['lang'];
+
+		$theme = $_POST['theme'];
+		$font = $_POST['font'];
 
 		// API URL
 		$url = 'https://api.jdoodle.com/v1/execute';
@@ -79,23 +83,24 @@
 	<title>BSP | CODE</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="./style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
-	<div class="container"> 
-		<div class="text-center mt-3">
-        	<h1>&lt;My Code Compiler /&gt;</h1>
+	<div class="container col-md-10"> 
+		<div class="text-center mt-4 mb-5">
+        	<h1 class="font-weight-bold">&lt;My Code Compiler /&gt;</h1>
     	</div>
 		<div class="row">
-			<div class="col-lg-12 mx-auto">
-				<div class="card mt-2 mx-auto p-4 bg-light">
+			<div class="col-lg-12 mx-auto mycnt">
+				<div class="card mt-3 mb-3 p-2 bg-light">
 					<div class="card-body bg-light">
-						<div class="container">
+						<!-- <div class="container"> -->
 							<form action="./" method="POST" id="contact-form" role="form">
 								<div class="controls">
 								
 									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group"> 
+										<!-- <div class="col-md-4"> -->
+											<div class="col-sm-4"> 
 												
 												<label for="form_need">Choose language</label> 
 												
@@ -131,21 +136,41 @@
 												
 											</div>
 
-											<div class="form-group"> 
+											<div class="col-sm-4"> 
 												<!-- Theme Selection -->
 												<label class="labelopt">Select Theme: </label>
 												<select class="selectpicker form-control" data-live-search="true" name="theme" id="mode2" onchange="change2mode()">
-													<option value="monokai" id="monokai" selected>Monokai</option>
-													<option value="chrome" id="chrome">Chrome</option>
-													<option value="solarized_light" id="solarized_light">Solarized Light</option>
-													<option value="solarized_dark" id="solarized_dark">Solarized Dark</option>
-													<option value="vibrant_ink" id="vibrant_ink">Vibrant Ink</option>
+													<option value="monokai" id="monokai"
+													<?php if(isset($_POST['theme']) && $_POST['theme'] == 'monokai') 
+														echo ' selected="selected"';
+													?>
+													>Monokai</option>
+													<option value="chrome" id="chrome"
+													<?php if(isset($_POST['theme']) && $_POST['theme'] == 'chrome') 
+														echo ' selected="selected"';
+													?>
+													>Chrome</option>
+													<option value="solarized_light" id="solarized_light"
+													<?php if(isset($_POST['theme']) && $_POST['theme'] == 'solarized_light') 
+														echo ' selected="selected"';
+													?>
+													>Solarized Light</option>
+													<option value="solarized_dark" id="solarized_dark" 
+													<?php if(isset($_POST['theme']) && $_POST['theme'] == 'solarized_dark') 
+														echo ' selected="selected"';
+													?>
+													>Solarized Dark</option>
+													<option value="vibrant_ink" id="vibrant_ink"
+													<?php if(isset($_POST['theme']) && $_POST['theme'] == 'vibrant_ink') 
+														echo ' selected="selected"';
+													?>
+													>Vibrant Ink</option>
 												</select>
 											</div>
 
-											<div class="form-group">
-												 <!-- Font Selection -->
-												 <label class="labelopt">Change font: </label>
+											<div class="col-sm-4">
+												<!-- Font Selection -->
+												<label class="labelopt">Change font: </label>
 												<select class="selectpicker form-control" data-live-search="true" name="font" id="mode3" onchange="change3mode()">
 													<option value="16" id="16">16px</option>
 													<option value="18" id="18">18px</option>
@@ -155,12 +180,12 @@
 												</select>
 											</div>
 
-										</div>
+										<!-- </div> -->
 									</div>
 
 									<div class="row">
 										<div class="col-md-12">
-											<div class="form-group"> 
+											<div class="form-group mt-2"> 
 												<label for="form_message">Your Code </label> 
 												<textarea id="form_message" name="code" class="form-control" rows="10" col="100" autocomplete="on" hidden="hidden"><?php if(isset($_POST['code'])){echo $code;} ?></textarea> 
 												<?php 
@@ -176,14 +201,15 @@
 											<br><br>
 										</div>
 										
-										<div class="col-md-12"> 
-											<input id="runcode" name="getoutput" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Run"> 
+										<div class="col-sm-6 mx-auto runbtn">
+											<i class="fas fa-sync-alt icon"></i>
+											<input id="runcode" name="getoutput" type="submit" class="btn btn-success btn-send pt-2 btn-block font-weight-bold" value="RUN">
 										</div>
 									</div>
 
 								</div>
 							</form>
-						</div>
+						<!-- </div> -->
 					</div>
 				</div> <!-- /.8 -->
 			</div> <!-- /.row-->
@@ -193,7 +219,7 @@
 	<!-- ----------------------------output div---------------------- -->
 	<div class="container"  id="outputdiv">
 		<div class="text-left mt-5 ">
-        	<h4>Your output:</h4>
+        	<h4>Console <i class="fas fa-terminal"></i> output:</h4>
     	</div>
 		
 		<div class="row">
@@ -203,8 +229,8 @@
 						<textarea class="form-control" name="stdin" rows="4" cols="70" readonly><?php echo $output; ?></textarea>
 						<br/>
 						<br/>
-						<h6>Memory: <?php echo $memory; ?></h6>
-						<h6>CPU time: <?php echo $cpuTime; ?>s</h6>
+						<h6><i class="fas fa-sd-card"></i> Memory: <?php echo $memory; ?>kb</h6>
+						<h6><i class="far fa-clock"></i> CPU time: <?php echo $cpuTime; ?>s</h6>
 					</div>
 				</div>
 			</div>
@@ -214,6 +240,13 @@
 
 	<br><br><br><br>
 	<!-- ------------------------------------------------------------------- -->
+
+	<footer class="page-footer font-small blue myftr">
+		<div class="footer-copyright text-center py-3">&lt;Developed by Sudhi/&gt;<br/>
+			Checkout <a href="https://github.com/Sudhee-bsp/Code-Compiler" target="_blank"><i class="fab fa-github"></i></a>
+		</div>
+	</footer>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>

@@ -19,7 +19,7 @@
               <div class="mained">
                 <pre name="code" id="editor" style="border: none;"></pre>
               </div>
-              <button type="button" id="save" class="btn btn-sky text-uppercase btn-sm" value="save">SAVE File</button>
+              <button type="button" id="save" class="btn btn-sky text-uppercase btn-sm" value="save">SAVE File <i class="fas fa-cloud-download-alt"></i></button>
             <!-- </div> -->
           <!-- </div> -->
         <!-- </div> -->

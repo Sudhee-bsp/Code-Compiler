@@ -6,20 +6,26 @@ body {
   background: linear-gradient(to bottom right, #2696ec, #0aa763);
 }
 
-h1 {
-  margin-bottom: 40px;
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+.mycnt {
+  box-shadow: 20px 20px 50px #00d2c6, -30px -30px 60px #00ffff;
+  border-radius: 13px;
 }
 
 label {
   color: #333;
-}
-
-.btn-send {
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  width: 80%;
-  margin-left: 3px;
 }
 
 .help-block.with-errors {
@@ -30,4 +36,33 @@ label {
 .card {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.runbtn i {
+  position: absolute;
+  font-size: 30px;
+  color: #ffffff;
+  top: 5px;
+  right: 10px;
+}
+
+.runbtn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 40px;
+}
+
+.btn-send {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.myftr {
+  background-color: #064d57;
+  color: #ffffff;
 }
