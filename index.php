@@ -85,12 +85,12 @@
 		<div class="text-center mt-3">
         	<h1>&lt;My Code Compiler /&gt;</h1>
     	</div>
-		<div class="row ">
+		<div class="row">
 			<div class="col-lg-12 mx-auto">
 				<div class="card mt-2 mx-auto p-4 bg-light">
 					<div class="card-body bg-light">
 						<div class="container">
-							<form action="./index.php" method="POST" id="contact-form" role="form">
+							<form action="./" method="POST" id="contact-form" role="form">
 								<div class="controls">
 								
 									<div class="row">
@@ -127,10 +127,34 @@
 													?>
 													>C++
 													</option>
-													
 												</select> 
 												
 											</div>
+
+											<div class="form-group"> 
+												<!-- Theme Selection -->
+												<label class="labelopt">Select Theme: </label>
+												<select class="selectpicker form-control" data-live-search="true" name="theme" id="mode2" onchange="change2mode()">
+													<option value="monokai" id="monokai" selected>Monokai</option>
+													<option value="chrome" id="chrome">Chrome</option>
+													<option value="solarized_light" id="solarized_light">Solarized Light</option>
+													<option value="solarized_dark" id="solarized_dark">Solarized Dark</option>
+													<option value="vibrant_ink" id="vibrant_ink">Vibrant Ink</option>
+												</select>
+											</div>
+
+											<div class="form-group">
+												 <!-- Font Selection -->
+												 <label class="labelopt">Change font: </label>
+												<select class="selectpicker form-control" data-live-search="true" name="font" id="mode3" onchange="change3mode()">
+													<option value="16" id="16">16px</option>
+													<option value="18" id="18">18px</option>
+													<option value="22" id="22" selected>22px</option>
+													<option value="24" id="24">24px</option>
+													<option value="26" id="26">26px</option>
+												</select>
+											</div>
+
 										</div>
 									</div>
 
