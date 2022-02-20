@@ -29,9 +29,9 @@ The composer is used just to make it suitable for deployable environment to a se
 
 - **Step 3**: Use above command to install the dependency locally. It is used to load the environment variables from .env to our files using:-
 
-  > getenv() or `$_ENV['clientID']` automatically.
+  > getenv() or `$_ENV['clientID']`
 
 - **Step 4**: After installing dependency, Add a .env file in the root of your project, as shown in .env.example file.
   Then run your index.php file in your browser, there you GO!
 
-In case you don't want to use composer (or don't have composer installed in your machine), you can simply ignore all composer related files to run the project. Directly add your client*id and client_secret in the index.php file by assigning those values to variable data array*.
+> In case you don't want to use composer (or don't have composer installed in your machine), you can simply ignore all composer related files to run the project. Directly add your client*id and client_secret in the index.php file by assigning those values to variable data array*.
