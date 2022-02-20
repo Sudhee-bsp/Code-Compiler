@@ -35,3 +35,5 @@ The composer is used just to make it suitable for deployable environment to a se
   Then run your index.php file in your browser, there you GO!
 
 > In case you don't want to use composer (or don't have composer installed in your machine), you can simply ignore all composer related files to run the project. Directly add your client*id and client_secret in the index.php file by assigning those values to variable data array*.
+
+**Any contributions or suggestions are always open - by creating a PR**
