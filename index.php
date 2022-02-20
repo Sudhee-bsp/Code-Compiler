@@ -9,7 +9,7 @@
 	$dotenv->load();
 
 	$code = $stdin = $language = $memory = $cpuTime = $output = "";
-	$theme = "";
+	$theme = $font = "";
 
 	if(isset($_POST['getoutput'])){
 		$code = $_POST['code'];
@@ -173,11 +173,31 @@
 												<!-- Font Selection -->
 												<label class="labelopt">Change font: </label>
 												<select class="selectpicker form-control" data-live-search="true" name="font" id="mode3" onchange="change3mode()">
-													<option value="16" id="16">16px</option>
-													<option value="18" id="18">18px</option>
-													<option value="22" id="22" selected>22px</option>
-													<option value="24" id="24">24px</option>
-													<option value="26" id="26">26px</option>
+													<option value="22" id="22"
+													<?php if(isset($_POST['font']) && $_POST['font'] == '22') 
+														echo ' selected="selected"';
+													?>
+													>22px</option>
+													<option value="16" id="16"
+													<?php if(isset($_POST['font']) && $_POST['font'] == '16') 
+														echo ' selected="selected"';
+													?>
+													>16px</option>
+													<option value="18" id="18"
+													<?php if(isset($_POST['font']) && $_POST['font'] == '18') 
+														echo ' selected="selected"';
+													?>
+													>18px</option>
+													<option value="24" id="24"
+													<?php if(isset($_POST['font']) && $_POST['font'] == '24') 
+														echo ' selected="selected"';
+													?>
+													>24px</option>
+													<option value="26" id="26"
+													<?php if(isset($_POST['font']) && $_POST['font'] == '26') 
+														echo ' selected="selected"';
+													?>
+													>26px</option>
 												</select>
 											</div>
 
@@ -198,7 +218,7 @@
 											<br>
 											<label for="form_inputs">Inputs: (if any)</label> 
 											<br/>
-											<textarea class="form-control" id="form_inputs" name="stdin" rows="5" cols="60"></textarea>
+											<textarea class="form-control" id="form_inputs" name="stdin" rows="5" cols="60"><?php if(isset($_POST['stdin'])){echo $stdin;} ?></textarea>
 											<br><br>
 										</div>
 										

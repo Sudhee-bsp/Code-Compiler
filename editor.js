@@ -9,6 +9,27 @@ editor.setValue(
 );
 editor.clearSelection();
 
+var lang = document.getElementById("lang");
+var langmode = lang.options[lang.selectedIndex].value;
+
+if (langmode == "c" || langmode == "cpp") {
+  editor.session.setMode("ace/mode/c_cpp");
+}
+if (langmode == "python3") {
+  editor.session.setMode("ace/mode/python");
+}
+if (langmode == "java") {
+  editor.session.setMode("ace/mode/java");
+}
+
+var uth = document.getElementById("mode2");
+var uthValue = uth.options[uth.selectedIndex].value;
+editor.setTheme("ace/theme/" + uthValue);
+
+var ufo = document.getElementById("mode3");
+var ufoValue = ufo.options[ufo.selectedIndex].value;
+editor.setFontSize(ufoValue);
+
 // Function to change the mode of the editor as a different language is selected dynamically
 function changeMode() {
   var x = document.getElementById("lang");
